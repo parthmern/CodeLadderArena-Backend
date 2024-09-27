@@ -22,7 +22,7 @@ export default class SampleJob implements IJob {
         console.log("Handler of the job called");
         console.log(this.payload);
         if(job) {
-            console.log(`jobName: ${job.name} | jobId: ${job.id}, | jobData: ${job.data}`)
+            console.log(`jobName: ${job.name} | jobId: ${job.id}, | jobData: ${JSON.stringify(job.data)}`)
         }
     };
 

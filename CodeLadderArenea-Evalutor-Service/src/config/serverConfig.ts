@@ -7,3 +7,4 @@ export default {
   REDIS_PORT: Number(process.env.REDIS_PORT), // for TS
   REDIS_HOST: process.env.REDIS_HOST
 };
+
