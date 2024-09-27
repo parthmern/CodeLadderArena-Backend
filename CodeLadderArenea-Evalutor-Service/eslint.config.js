@@ -1,6 +1,6 @@
 const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 const parser = require('@typescript-eslint/parser');
-// const simpleImportSort = require('eslint-plugin-simple-import-sort');
+const simpleImportSort = require('eslint-plugin-simple-import-sort');
 const prettier = require('eslint-plugin-prettier'); // Add Prettier plugin
 
 module.exports = [
@@ -16,13 +16,13 @@ module.exports = [
     },
     plugins: {
       '@typescript-eslint': typescriptEslint,
-      // 'simple-import-sort': simpleImportSort,
+      'simple-import-sort': simpleImportSort,
       prettier, // Add Prettier to plugins
     },
     rules: {
       // TypeScript and Import Sort Rules
-      //'simple-import-sort/imports': 'error',
-      //'simple-import-sort/exports': 'error',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
 
      
 
