@@ -16,3 +16,7 @@
 - dao [ https://medium.com/@eliassalom/what-is-a-dao-layer-26a65c32b277 ]
 
 - [ https://chatgpt.com/share/66f7a922-379c-8010-b0a8-2448f5f11b8f ]
+
+## serizlize, deserialize, bits during network calls/ http calls
+
+- https://youtu.be/Zhg59uq1gfE?si=iZX4M6BbcRkAVDIR
