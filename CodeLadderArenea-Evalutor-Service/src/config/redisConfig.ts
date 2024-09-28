@@ -10,4 +10,6 @@ const redisConfig = {
 
 const redisConnection = new Redis(redisConfig);
 
+console.log(`Redis dashboard running on: http://localhost:8001`);
+
 export default redisConnection;
