@@ -7,3 +7,12 @@
 - redis docker run `docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest`
 
 ![imgg](https://res.cloudinary.com/dncm3mid4/image/upload/v1727460937/githubreadme/zpek14llftjkfs8ksayx.png)
+
+## what are DTO and DAO ?
+
+- dto [ https://dev.to/tareksalem/dtos-in-javascript-118p ] (how to make with libs like zod) 
+- object that carries "standardize the structure of the data" between client to server(db, thirdparty api, microservice)
+
+- dao [ https://medium.com/@eliassalom/what-is-a-dao-layer-26a65c32b277 ]
+
+- [ https://chatgpt.com/share/66f7a922-379c-8010-b0a8-2448f5f11b8f ]
