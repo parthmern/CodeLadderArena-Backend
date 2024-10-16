@@ -3,7 +3,7 @@ import express, { Express } from "express"; // Explicit type
 
 import serverAdapter from "./config/bullBoardConfig";
 import serverConfig from "./config/serverConfig";
-import sampleQueueProducer from "./producers/sampleQueueProducer";
+import runPython from "./containers/runPythonDocker";
 import apiRouter from "./routes";
 import SampleWorker from "./workers/SampleWorker";
 
@@ -22,10 +22,11 @@ app.listen(serverConfig.PORT, () => {
 
   SampleWorker('SampleQueue');
 
-  sampleQueueProducer('SampleJob', {
-    name:"parth",
-    status : "berozgaar",
-    id : "jfjdjddjjdj"
-  });
+  const code:string = `print('hello from puthon')`
+  
+  runPython(code);
+
+
 
 });
+
