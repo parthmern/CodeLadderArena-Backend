@@ -37,16 +37,24 @@ async function runPython(code:string, inputTestCase: string) {
         rawLogBuffer.push(chunk);   // wenver the log something during execution this listener will trigger
     })
 
-    loggerStream.on('end', (_chunk)=>{
-        console.log(rawLogBuffer);
-        const logString = Buffer.concat(rawLogBuffer).toString('utf-8');
-        console.log(logString);
+    
 
-        const completeBuffer = Buffer.concat(rawLogBuffer);
-        const decodedStream = decodeDockerStream(completeBuffer);
-        console.log(decodedStream);
+    await new Promise((res, _)=>{
 
+        loggerStream.on('end', (_chunk)=>{
+            console.log(rawLogBuffer);
+            const logString = Buffer.concat(rawLogBuffer).toString('utf-8');
+            console.log(logString);
+    
+            const completeBuffer = Buffer.concat(rawLogBuffer);
+            const decodedStream = decodeDockerStream(completeBuffer);
+            console.log(decodedStream);
+            res(decodedStream);
+    
+        })
     })
+
+    await pythonDockerContainer.remove();   
 
     return ;
 
