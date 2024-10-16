@@ -3,11 +3,13 @@ import express, { Express } from "express"; // Explicit type
 
 import serverAdapter from "./config/bullBoardConfig";
 import serverConfig from "./config/serverConfig";
-import runCpp from "./containers/runCpp";
+import submissionQueueProducer from "./producers/submissionQueueProducer";
+// import runCpp from "./containers/runCpp";
 // import runJava from "./containers/runJavaDocker";
 // import runPython from "./containers/runPythonDocker";
 import apiRouter from "./routes";
 import SampleWorker from "./workers/SampleWorker";
+import SubmissionWorker from "./workers/SubmissionWorker";
 
 const app: Express = express();
 
@@ -24,6 +26,30 @@ app.listen(serverConfig.PORT, () => {
 
   SampleWorker('SampleQueue');
 
+  SubmissionWorker('SubmissionQueue');
+  submissionQueueProducer({
+    "1234" : {
+      language : "CPP",
+      inputCase : "10",
+      code : `
+                #include <iostream>
+                using namespace std;
+
+                int main(){
+                  int x;
+                  cin >> x;
+                  cout << "value of x is => " << x << endl;
+                  
+                  for(int i=0; i<x; i++){
+                    cout << i << " ";
+                  }
+
+                } 
+              `
+    }
+  })
+
+  // ------------------------------------------------------------
   // const code:string = `
   // x = input()
   // print("value of x is => ") 
@@ -31,6 +57,7 @@ app.listen(serverConfig.PORT, () => {
   
   // runPython(code, "100");
 
+  // ------------------------------------------------------------
   // const code: string = `
   // import java.util.*;
 
@@ -49,26 +76,57 @@ app.listen(serverConfig.PORT, () => {
 
   // runJava(code, "10");
 
-  const code : string =`
-  #include <iostream>
-  using namespace std;
+  // ---------------------------------------------------------------------
+  // const code : string =`
+  // #include <iostream>
+  // using namespace std;
 
-  int main(){
-    int x;
-    cin >> x;
-    cout << "value of x is => " << x << endl;
+  // int main(){
+  //   int x;
+  //   cin >> x;
+  //   cout << "value of x is => " << x << endl;
     
-    for(int i=0; i<x; i++){
-      cout << i << " ";
-    }
+  //   for(int i=0; i<x; i++){
+  //     cout << i << " ";
+  //   }
 
-  }
-  `;
+  // }
+  // `;
 
-  // here there might be STUB code in backend 
+  // runCpp(code, "10");
 
-  runCpp(code, "10");
+// --------------------------------------------
+//   const userCode = `
+  
+//     class Solution {
+//       public:
+//       vector<int> permute() {
+//           vector<int> v;
+//           v.push_back(10);
+//           return v;
+//       }
+//     };
+//   `;
 
+//   const STUBcode = `
+//   #include<iostream>
+//   #include<vector>
+//   #include<stdio.h>
+//   using namespace std;
+  
+//   ${userCode}
+
+//   int main() {
+
+//     Solution s;
+//     vector<int> result = s.permute();
+//     for(int x : result) {
+//       cout<<x<<" ";
+//     }
+//     cout<<endl;
+//     return 0;
+//   }
+//   `;
 
 
 });

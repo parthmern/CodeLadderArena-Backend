@@ -37,7 +37,7 @@ async function runCpp(code:string, inputTestCase: string) {
 
     
 
-    await new Promise((res, _)=>{
+    const response = await new Promise((res, _)=>{
 
         loggerStream.on('end', (_chunk)=>{
             console.log(rawLogBuffer);
@@ -54,7 +54,7 @@ async function runCpp(code:string, inputTestCase: string) {
 
     await cppDockerContainer.remove();   
 
-    return ;
+    return response ;
 
 }
 
