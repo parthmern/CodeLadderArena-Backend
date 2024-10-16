@@ -22,9 +22,12 @@ app.listen(serverConfig.PORT, () => {
 
   SampleWorker('SampleQueue');
 
-  const code:string = `print('hello from puthon')`
+  const code:string = `
+  x = input()
+  print("value of x is => ") 
+  `;
   
-  runPython(code);
+  runPython(code, "100");
 
 
 

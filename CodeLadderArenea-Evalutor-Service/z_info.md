@@ -20,3 +20,7 @@
 ## serizlize, deserialize, bits during network calls/ http calls
 
 - https://youtu.be/Zhg59uq1gfE?si=iZX4M6BbcRkAVDIR
+
+## docker helper ( decoding chunks )
+
+- ![img](https://res.cloudinary.com/dncm3mid4/image/upload/v1729048169/githubreadme/v5k0jcjsh3yjjnqpejws.png)
