@@ -1,10 +1,10 @@
 const app = require('./app');
 
-const fastify = require('fastify')({logger: false});
+const fastify = require('fastify')({logger: true});
 
 const PORT = 3000;
 
-fastify.register(app);
+fastify.register(app);  // registering plugin "app"
 
 fastify.listen({ port: PORT }, (err) => {
     if (err) {
