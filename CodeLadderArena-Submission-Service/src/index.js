@@ -1,8 +1,7 @@
 const app = require('./app');
+const { PORT } = require('./config/serverConfig');
 
 const fastify = require('fastify')({logger: true});
-
-const PORT = 3000;
 
 fastify.register(app);  // registering plugin "app"
 

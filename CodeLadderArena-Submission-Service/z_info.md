@@ -5,3 +5,4 @@
 ## tutorial
 
 - https://youtu.be/btGtOue1oDA?si=oUMnHCmRBj2l2MQl
+- learn about FASTIFY plugins, 
