@@ -9,5 +9,6 @@ const redisConfig = {
 };
 
 const redisConnection = new Redis(redisConfig);
+console.log("❤️  Redis connection done");
 
 module.exports = redisConnection;

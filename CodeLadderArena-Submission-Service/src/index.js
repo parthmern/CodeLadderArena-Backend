@@ -2,7 +2,7 @@ const app = require('./app');
 const connectToDB = require('./config/dbConfig');
 const { PORT } = require('./config/serverConfig');
 
-const fastify = require('fastify')({logger: true});
+const fastify = require('fastify')({logger: false});
 
 fastify.register(app);  // registering plugin "app"
 
