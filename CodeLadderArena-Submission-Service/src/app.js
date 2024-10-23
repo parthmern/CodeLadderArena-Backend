@@ -1,16 +1,17 @@
 const fastifyPlugin = require('fastify-plugin');
 const servicePlugin = require('./services/servicePlugin');
+const repositoryPlugin = require('./repositories/repositoryPlugin');
 
 async function app(fastify,option) {
-    fastify.register(require('@fastify/cors'));
-
-    // register test routes
-    // fastify.register(require('./routes/api/test/testRoutes'), {prefix: '/test'});    // /test/
     
-    fastify.register( require("./routes/api/apiRoutes"), {prefix : '/api'} );
+    await fastify.register(require('@fastify/cors'));
+    
+    await fastify.register(repositoryPlugin);
 
-    fastify.register(servicePlugin);
+    await fastify.register(servicePlugin);
+
+    await fastify.register( require("./routes/api/apiRoutes"), {prefix : '/api'} );
 
 }
 
-module.exports = fastifyPlugin(app);    // APP function becomes fastify plugin and afterwards we need to register this plugin
+module.exports = fastifyPlugin(app);    // APP function becomes fastify plugin and afterwards we need to register this plugin with fastify instance
