@@ -6,3 +6,11 @@
 
 - https://youtu.be/btGtOue1oDA?si=oUMnHCmRBj2l2MQl
 - learn about FASTIFY plugins, 
+
+# what is sync communication 
+
+- ![img](https://res.cloudinary.com/dncm3mid4/image/upload/v1729807678/githubreadme/mkt276kixffe8u42yppo.jpg)
+
+# wht is async communication
+
+- ![img](https://res.cloudinary.com/dncm3mid4/image/upload/v1729807889/githubreadme/buhwpzoxlyg2suhk1ff3.jpg)
