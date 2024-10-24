@@ -48,7 +48,7 @@ class SubmissionService {
                 code : createdSubmission.code,
                 language : createdSubmission.language,
                 inputCase : problemAdminApiResponse.data.testCases[0].input,
-                outputCase : problemAdminApiResponse.data.testCases[0].input
+                outputCase : problemAdminApiResponse.data.testCases[0].output
             }
         });
 
