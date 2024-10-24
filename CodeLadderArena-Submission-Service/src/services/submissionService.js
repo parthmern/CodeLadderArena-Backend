@@ -31,7 +31,10 @@ class SubmissionService {
 
         submission.code = languageCodeStub.startSnippet + "\n\n" + submission.code + "\n\n" + languageCodeStub.endSnippet;
 
+        submission.testCases = languageCodeStub.testCases;
+
         const createdSubmission = await this.submissionRepository.createSubmission(submission);
+        
 
         if(!createdSubmission){
             throw {message: "not able to create submission"}
@@ -40,7 +43,14 @@ class SubmissionService {
         console.log("createdSubmission in db =>", createdSubmission);
 
         // adding job into submissionQueue
-        const response = await submissionQueueProducer(submission);
+        const response = await submissionQueueProducer({
+            [createdSubmission._id] : {
+                code : createdSubmission.code,
+                language : createdSubmission.language,
+                inputCase : problemAdminApiResponse.data.testCases[0].input,
+                outputCase : problemAdminApiResponse.data.testCases[0].input
+            }
+        });
 
         return {queueResponse : response, submission : createdSubmission} ;
         
