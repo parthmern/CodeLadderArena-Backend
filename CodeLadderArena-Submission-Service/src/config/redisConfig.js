@@ -8,7 +8,19 @@ const redisConfig = {
     maxRetriesPerRequest: null
 };
 
-const redisConnection = new Redis(redisConfig);
-console.log("❤️  Redis connection done");
+let redisConnection;
+
+try {
+    redisConnection = new Redis(redisConfig);
+    redisConnection.on('connect', () => {
+        console.log("❤️  Redis connection done");
+    });
+
+    redisConnection.on('error', (error) => {
+        console.error("❌ Error connecting to Redis:", error);
+    });
+} catch (error) {
+    console.error("❌ Exception while creating Redis connection:", error);
+}
 
 module.exports = redisConnection;
