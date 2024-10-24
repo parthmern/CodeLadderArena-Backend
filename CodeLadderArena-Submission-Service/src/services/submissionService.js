@@ -1,3 +1,4 @@
+const { fetchProblemDetails } = require("../apis/problemAdminApi");
 const submissionQueueProducer = require("../producers/submissionQueueProducer");
 
 class SubmissionService {
@@ -14,6 +15,22 @@ class SubmissionService {
 
         console.log("submission we are getting =>", submission);
 
+        const problemId = submission.problemId;
+
+        const problemAdminApiResponse = await fetchProblemDetails(problemId);
+
+        console.log("problemAdminApiResponse =>", problemAdminApiResponse);
+
+        if(!problemAdminApiResponse){
+            throw {message: "not able to get problem data"}
+        }
+
+        const languageCodeStub = problemAdminApiResponse.data.codeStubs.find((codeStub)=> codeStub.language.toLowerCase() == submission.language.toLowerCase() );
+
+        console.log(languageCodeStub);
+
+        submission.code = languageCodeStub.startSnippet + "\n\n" + submission.code + "\n\n" + languageCodeStub.endSnippet;
+
         const createdSubmission = await this.submissionRepository.createSubmission(submission);
 
         if(!createdSubmission){
@@ -26,6 +43,7 @@ class SubmissionService {
         const response = await submissionQueueProducer(submission);
 
         return {queueResponse : response, submission : createdSubmission} ;
+        
     }
 
 }
