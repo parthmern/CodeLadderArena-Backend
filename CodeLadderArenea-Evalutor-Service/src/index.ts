@@ -3,7 +3,7 @@ import express, { Express } from "express"; // Explicit type
 
 import serverAdapter from "./config/bullBoardConfig";
 import serverConfig from "./config/serverConfig";
-import submissionQueueProducer from "./producers/submissionQueueProducer";
+// import submissionQueueProducer from "./producers/submissionQueueProducer";
 // import runCpp from "./containers/runCpp";
 // import runJava from "./containers/runJavaDocker";
 // import runPython from "./containers/runPythonDocker";
@@ -27,27 +27,28 @@ app.listen(serverConfig.PORT, () => {
   SampleWorker('SampleQueue');
 
   SubmissionWorker('SubmissionQueue');
-  submissionQueueProducer({
-    "1234" : {
-      language : "CPP",
-      inputCase : "10",
-      code : `
-                #include <iostream>
-                using namespace std;
+  
+  // submissionQueueProducer({
+  //   "1234" : {
+  //     language : "CPP",
+  //     inputCase : "10",
+  //     code : `
+  //               #include <iostream>
+  //               using namespace std;
 
-                int main(){
-                  int x;
-                  cin >> x;
-                  cout << "value of x is => " << x << endl;
+  //               int main(){
+  //                 int x;
+  //                 cin >> x;
+  //                 cout << "value of x is => " << x << endl;
                   
-                  for(int i=0; i<x; i++){
-                    cout << i << " ";
-                  }
+  //                 for(int i=0; i<x; i++){
+  //                   cout << i << " ";
+  //                 }
 
-                } 
-              `
-    }
-  })
+  //               } 
+  //             `
+  //   }
+  // })
 
   // ------------------------------------------------------------
   // const code:string = `
