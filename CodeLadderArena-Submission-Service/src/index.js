@@ -1,6 +1,7 @@
 const app = require('./app');
 const connectToDB = require('./config/dbConfig');
 const { PORT } = require('./config/serverConfig');
+const evaluationWorker = require('./workers/evaluationWorker');
 
 const fastify = require('fastify')({logger: false});
 
@@ -14,5 +15,7 @@ fastify.listen({ port: PORT },async (err) => {
     
     await connectToDB();
     console.log(`💚 Submission service started at ${PORT}`);
+
+    evaluationWorker('EvaluationQueue');
 })
   
