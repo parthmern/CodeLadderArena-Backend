@@ -11,7 +11,7 @@ async function pingRequest (req, res){
 
 async function createSubmission(req, res) {
     console.log(req.body);
-    //console.log("create submission", this); // fastify obj
+    console.log("create submission", this.submissionService); // fastify obj
     const response = await this.submissionService.addSubmission(req.body);
     return res.status(201).send({
         error: {},
@@ -21,6 +21,18 @@ async function createSubmission(req, res) {
     })
 
 }
+
+// async function updateSubmission(evaluatedSubmission) {
+//     console.log("evaluatedSubmission=>", evaluatedSubmission);
+//     console.log("submissionService=>",this.submissionService);
+//     const response = await this.submissionService.updateSubmission(evaluatedSubmission);
+//     return res.status(201).send({
+//         error: {},
+//         data: response,
+//         success: true,
+//         message: 'updated submission successfully'
+//     })
+// }
 
 module.exports = {
     pingRequest,
