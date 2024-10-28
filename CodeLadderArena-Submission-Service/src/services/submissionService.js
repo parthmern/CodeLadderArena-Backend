@@ -59,6 +59,13 @@ class SubmissionService {
         
     }
 
+    async updateSubmission(evaluatedSubmission){
+        const res = await this.submissionRepository.updateSubmission(evaluatedSubmission);
+
+        return {res};
+    }
+
+    
 }
 
 
