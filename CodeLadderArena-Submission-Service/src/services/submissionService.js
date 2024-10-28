@@ -16,6 +16,7 @@ class SubmissionService {
         console.log("submission we are getting =>", submission);
 
         const problemId = submission.problemId;
+        const userId = submission.userId;
 
         const problemAdminApiResponse = await fetchProblemDetails(problemId);
 
@@ -48,7 +49,9 @@ class SubmissionService {
                 code : createdSubmission.code,
                 language : createdSubmission.language,
                 inputCase : problemAdminApiResponse.data.testCases[0].input,
-                outputCase : problemAdminApiResponse.data.testCases[0].output
+                outputCase : problemAdminApiResponse.data.testCases[0].output,
+                userId : userId,
+                submissionId : createdSubmission._id
             }
         });
 
