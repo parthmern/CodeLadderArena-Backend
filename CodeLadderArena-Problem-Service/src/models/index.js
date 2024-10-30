@@ -1,4 +1,5 @@
 
 module.exports = {
-    Problem : require("./problem.model")
+    Problem : require("./problem.model"),
+    User : require("./user.model")
 }

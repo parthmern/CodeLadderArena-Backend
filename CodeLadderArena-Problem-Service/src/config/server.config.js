@@ -12,5 +12,6 @@ module.exports ={
     COSMOS_ENDPOINT : process.env.COSMOS_ENDPOINT,
     COSMOS_KEY : process.env.COSMOS_KEY,
     COSMOS_DBID : process.env.COSMOS_DBID,
-    COSMOS_CONTAINERID : process.env.COSMOS_CONTAINERID
+    COSMOS_CONTAINERID : process.env.COSMOS_CONTAINERID,
+    JWT_SECRET : process.env.JWT_SECRET
 }
