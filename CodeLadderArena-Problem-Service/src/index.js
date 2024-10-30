@@ -1,5 +1,5 @@
 const express = require("express");
-const { PORT } = require("./config/server.config");
+const { PORT, CLIENTSIDE_URL, SUBMISSIONSERVICE_URL } = require("./config/server.config");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const apiRouter = require("./routes");
@@ -9,7 +9,11 @@ const connectToDB = require("./config/db.config");
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+    origin: [CLIENTSIDE_URL, SUBMISSIONSERVICE_URL], // Dont mashedup with it
+    credentials: true, // Allow cookies to be sent across domains
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());

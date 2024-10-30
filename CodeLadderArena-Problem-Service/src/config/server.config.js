@@ -13,5 +13,7 @@ module.exports ={
     COSMOS_KEY : process.env.COSMOS_KEY,
     COSMOS_DBID : process.env.COSMOS_DBID,
     COSMOS_CONTAINERID : process.env.COSMOS_CONTAINERID,
-    JWT_SECRET : process.env.JWT_SECRET
+    JWT_SECRET : process.env.JWT_SECRET,
+    SUBMISSIONSERVICE_URL : process.env.SUBMISSIONSERVICE_URL,
+    CLIENTSIDE_URL : process.env.CLIENTSIDE_URL
 }

@@ -34,9 +34,10 @@ const authController = async (req, res) => {
         const cookiesOptions = {
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // Expires after 24 hours
             httpOnly: true,
+            sameSite: "None",
         };
         
-        res.cookie("token", jwtToken, cookiesOptions).status(200).json({
+        res.cookie("tokenData", jwtToken, cookiesOptions).status(200).json({
             success: true,
             message: existingUser ? "User login success" : "User created and logged in",
             user: existingUser,
