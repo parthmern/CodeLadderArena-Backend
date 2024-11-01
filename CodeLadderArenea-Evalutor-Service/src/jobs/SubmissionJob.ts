@@ -72,6 +72,8 @@ export default class SubmissionJob implements IJob {
                     const response: ExecutionResponse = await strategy.execute(code, inputTestCase, outputTestCase);
                     
                     results.push(response); // Collect the response for each test case
+
+                    console.log("end====>",results);
     
                     if (response.status !== "SUCCESS") {
                         allPassed = false;
