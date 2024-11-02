@@ -9,11 +9,15 @@ const app = express(); // Create express app
 const httpServer = createServer(app); // Create http server using express app
 const redisCache = new Redis(); // Create Redis client
 
+require('dotenv').config();
+
+const CLIENTSIDE_URL = process.eventNames.CLIENTSIDE_URL;
 
 const io = new Server(httpServer, { 
     cors: {
-        origin: "http://127.0.0.1:5500",
-        methods: ["GET", "POST"]
+        origin: ["http://127.0.0.1:5500", CLIENTSIDE_URL],
+        methods: ["GET", "POST"],
+        credentials: true
     }
 }); // Create socket.io server
 
@@ -24,6 +28,7 @@ io.on("connection", (socket) => {
     socket.on("setUserId", async (userId) => {
         console.log("Setting user id to connection id", userId, socket.id);
         redisCache.set(userId, socket.id);
+        socket.emit("confirmSetUserId", userId);
     });
 
     socket.on('getConnectionId', async (userId) => {
@@ -38,6 +43,12 @@ io.on("connection", (socket) => {
 });
 
 app.use(express.json());
+
+var cors = require('cors')
+
+app.use(cors({
+    origin: CLIENTSIDE_URL 
+  })); 
 
 app.get("/",(req,res)=>{
     res.send("socket server up");
