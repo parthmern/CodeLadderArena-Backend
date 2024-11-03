@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 
+const outputSchema = new mongoose.Schema({
+    output: { type: String },
+    status: { type: String }
+}, { _id: false }); // `_id: false` prevents automatic IDs for sub-documents
+
 const submissionSchema = new mongoose.Schema({
     userId: {
         type: String,
@@ -21,6 +26,10 @@ const submissionSchema = new mongoose.Schema({
         type: String,
         enum: ["Pending", "Success", "RE", "TLE", "MLE", "WA"], // runtimeerror, timelimitexcedded, memorylimitexcedeed, wrongans
         default: "Pending"
+    },
+    result: {
+        type: [outputSchema], // Array of outputSchema objects
+        default: []
     }
 });
 

@@ -3,6 +3,7 @@ const redisConnection = require('../config/redisConfig');
 const axios = require('axios');
 const { updateSubmission } = require('../controllers/submissionController');
 const SubmissionRepository = require('../repositories/submissionRepository');
+const { SOCKET_SERVICE_URL } = require('../config/serverConfig');
 
 function evaluationWorker(queue) {
     new Worker('EvaluationQueue', async job => {
@@ -16,7 +17,7 @@ function evaluationWorker(queue) {
                 const res = await submissionRepo.updateSubmission(job.data);
                 console.log("res====>", res);
 
-                const response = await axios.post('http://localhost:4001/sendPayload', {
+                const response = await axios.post(`${SOCKET_SERVICE_URL}/sendPayload`, {
                     userId: job.data.userId,
                     payload: job.data
                 })

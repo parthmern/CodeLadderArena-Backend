@@ -15,7 +15,10 @@ class SubmissionRepository {
             console.log("evaluatedSubmission-----------------------", evaluatedSubmission);
             const res = await this.submissionModel.findByIdAndUpdate(
                 evaluatedSubmission.submissionId, 
-                { status: evaluatedSubmission.overallStatus }, 
+                { 
+                    status: evaluatedSubmission.overallStatus,
+                    $push: { result: { $each: evaluatedSubmission.results } } 
+                }, 
                 { new: true } 
             );
             console.log("updated submission", res);
