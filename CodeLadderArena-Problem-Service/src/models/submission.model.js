@@ -11,7 +11,8 @@ const submissionSchema = new mongoose.Schema({
         required: [true, "User id for the submission is missing"],
     },
     problemId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Problem',
         required: [true, "Problem id for the submission is missing"],
     },
     code: {

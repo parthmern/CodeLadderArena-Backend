@@ -6,7 +6,7 @@ async function getSubmissionById(req, res) {
     try {
         const { submissionId } = req.params;
         console.log("submissionId", submissionId);
-        const submission = await Submission.findById(submissionId);
+        const submission = await Submission.findById(submissionId).populate('problemId');
 
         if (!submission) {
             return res.status(404).json({ message: 'Submission not found' });
@@ -24,7 +24,7 @@ async function getSubmissionsByUserId(req, res) {
         const { userId } = req.params;
         console.log("got user id to find all submissions->", userId);
 
-        const submissions = await Submission.find({ userId });
+        const submissions = await Submission.find({ userId }).populate('problemId');
 
         if (submissions.length === 0) {
             return res.status(404).json({ message: 'No submissions found for this user' });
@@ -40,7 +40,7 @@ async function getSubmissionByUserAndProblem(req, res) {
     try {
         const { userId, problemId } = req.params;
         console.log("getSubmissionByUserAndProblem", userId, problemId);
-        const submissions = await Submission.find({ userId, problemId });
+        const submissions = await Submission.find({ userId, problemId }).populate('problemId');
 
         if (submissions.length === 0) {
             return res.status(404).json({ message: 'No submissions found for this user and problem' });
