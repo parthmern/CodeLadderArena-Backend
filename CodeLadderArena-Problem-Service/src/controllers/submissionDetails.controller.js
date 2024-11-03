@@ -36,8 +36,25 @@ async function getSubmissionsByUserId(req, res) {
     }
 }
 
+async function getSubmissionByUserAndProblem(req, res) {
+    try {
+        const { userId, problemId } = req.params;
+        console.log("getSubmissionByUserAndProblem", userId, problemId);
+        const submissions = await Submission.find({ userId, problemId });
+
+        if (submissions.length === 0) {
+            return res.status(404).json({ message: 'No submissions found for this user and problem' });
+        }
+
+        res.status(200).json(submissions);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
 
 module.exports = {
     getSubmissionById,
-    getSubmissionsByUserId
+    getSubmissionsByUserId,
+    getSubmissionByUserAndProblem
 }
